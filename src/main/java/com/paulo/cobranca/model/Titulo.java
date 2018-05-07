@@ -1,5 +1,6 @@
 package com.paulo.cobranca.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,51 +13,84 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import com.paulo.cobranca.enums.StatusTitulo;
 
 @Entity
-public class Titulo {
+public class Titulo implements Serializable{
 
+	private static final long serialVersionUID = 581861517911082458L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	
 	private String descricao;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
+	
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
+	
 	@Enumerated(EnumType.STRING)
 	private StatusTitulo status;
+
+	public Titulo() {
+	}
+	
+	public Titulo(Long codigo, String descricao, Date dataVencimento, BigDecimal valor, StatusTitulo status) {
+		super();
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.dataVencimento = dataVencimento;
+		this.valor = valor;
+		this.status = status;
+	}
 	
 	public Long getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Date getDataVencimento() {
 		return dataVencimento;
 	}
+
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
+
 	public BigDecimal getValor() {
 		return valor;
 	}
+
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
 	public StatusTitulo getStatus() {
 		return status;
 	}
+
 	public void setStatus(StatusTitulo status) {
 		this.status = status;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -68,6 +102,7 @@ public class Titulo {
 		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -101,6 +136,5 @@ public class Titulo {
 			return false;
 		return true;
 	}
-	
-	
+
 }
