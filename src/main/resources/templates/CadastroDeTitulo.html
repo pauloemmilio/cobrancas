@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/a999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
 <head>
 <meta charset="UTF-8" />
 <title>Cadastro de título</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<body>
-
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <img alt="Bootstrap"
-					src="/images/logo_bootstrap.png" />
-				</a>
-			</div>
-		</div>
-	</nav>
-
+<section layout:fragment="conteudo">
 	<form class="form-horizontal" method="post" action="/titulos">
 
 		<div class="alert alert-success"
@@ -28,7 +17,10 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h1 class="panel-title">Novo título</h1>
+				<div class="clearfix">
+					<h1 class="panel-title aw-titulo-panel">Novo título</h1>
+					<a class="btn btn-link aw-link-panel" href="/titulos">Pesquisar	títulos</a>
+				</div>
 			</div>
 		</div>
 
@@ -75,8 +67,6 @@
 		</div>
 
 	</form>
+</section>
 
-	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-</body>
 </html>
